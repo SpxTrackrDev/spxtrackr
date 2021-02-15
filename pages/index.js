@@ -56,6 +56,17 @@ export default class extends Component {
         <div className='headerParent'>
           <div className='header'>
             <h1>SpaceX Tracker</h1>
+            <h2>
+                <Link href="/posts/nasaPage">
+                  <a>NASA</a>
+                </Link>
+            </h2>
+            <h2>
+              <Link href="/posts/spxPage">
+                  <a>SpaceX</a>
+              </Link>
+            </h2>
+            
           </div>
         </div>
         {this.state.launches && this.state.launches.map((value, index) => {
