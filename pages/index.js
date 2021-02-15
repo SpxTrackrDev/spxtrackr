@@ -1,77 +1,91 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import React, { Component } from "react"
+const axios = require('axios');
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+export default class extends Component {
+  state = {
+    launches: [],
+    showInfo: -1
+  }
+  constructor(props) {
+    super(props)
+    this.getData = this.getData.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    // this.getBooster = this.getBooster(this)
+  }
+  componentDidMount() {
+    this.getData()
+  }
+  // getBooster(core)
+  // {
+  //   console.log(core)
+  //   axios.get('https://api.spacexdata.com/v4/cores/'+core)
+  //     .then(function (response) {
+  //       return response.data.serial
+  //     })
+  //     .catch(function (error) {
+  //       // handle error
+  //       console.log(error);
+  //     })
+  // }
+  getData() {
+    let that = this
+    axios.get('https://api.spacexdata.com/v4/launches/upcoming')
+      .then(function (response) {
+        console.log(response.data);
+        that.setState({ launches: response.data })
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Click Here ===> {' '}
-          <Link href="/posts/nasaPage">
-            <a>This should lead to the NASA page</a>
-          </Link>
-        </h1>
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+  }
+  handleClick(index) {
+    if (index === this.state.showInfo)
+      index = -1
+    this.setState(state => ({ showInfo: index }))
+  }
 
-        <h1 className={styles.title}>
-          Or here ====> {' '}
-          <Link href="/posts/spxPage">
-              <a>This should lead to the SpaceX Page</a>
-          </Link>
-        </h1>
+  render () {
+    return (
 
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className='page'>
+        <div className='headerParent'>
+          <div className='header'>
+            <h1>SpaceX Tracker</h1>
+          </div>
         </div>
-      </main>
+        {this.state.launches && this.state.launches.map((value, index) => {
+          if (index < 2) {
+            // const divStyle = { backgroundImage: 'url(https://live.staticflickr.com/65535/49635401403_96f9c322dc_o.jpg)' }
+            let date = new Date(value.date_local)
+            return (
+              <div className='box' key={index} >
+                <div className='launch' onClick={() => this.handleClick(index)} >
+                  <h1>{value.name}</h1>
+                </div>
+                {this.state.showInfo === index &&
+                  <div className='info'>
+                    <h1> Launch Info</h1>
+                    <p className='paragraph'>{value.details}</p>
+                    <h3>Flight No. : {value.flight_number}</h3>
+                    <h3>Date: {date.toString()}</h3>
+                    {/* <h2>Booster No. : {()=>this.getBooster(value.cores[0].core)}</h2> */}
+                    {/* {console.log(value.cores[0].core)} */}
+                  </div>}
+              </div>
+            )
+          }
+          else {
+            return (<div key={index} ></div>)
+          }
+        })}
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+      </div>
+    );
+  }
 }
+
