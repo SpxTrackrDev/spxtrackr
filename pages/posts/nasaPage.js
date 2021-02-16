@@ -16,7 +16,7 @@ export default function nasa_Page(){
             <Link href="/">
                 <a>Back to front page.</a>
             </Link>
-        </h2>
+        </h2> 
         <h2>
             NASA information coming soon
         </h2>
