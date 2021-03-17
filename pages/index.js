@@ -1,8 +1,4 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
 import React, { Component } from "react"
-import Countdown from 'react-countdown';
 const axios = require('axios');
 
  
@@ -54,33 +50,6 @@ export default class extends Component {
       index = -1
     this.setState(state => ({ showInfo: index }))
   }
-  renderCountdown(dateStart, dateEnd){
-    let targetDate = dateEnd.getTime();
-    let days, hours, minutes, seconds; 
-    let countdown = document.getElementById("demo");
-    let count = 0;
-    let array = new Array(3);
-    let getCountdown = function (c){
-        let currentDate = new Date().getTime();
-        let secondsLeft = ((targetDate - currentDate) / 1000) - c;
-        days = pad( Math.floor( secondsLeft / 86400 ) );
-        secondsLeft %= 86400;
-        hours = pad( Math.floor( secondsLeft / 3600 ) );
-        secondsLeft %= 3600;
-        minutes = pad( Math.floor( secondsLeft / 60 ) );
-        seconds = pad( Math.floor( secondsLeft % 60 ) );
-        array[0] = days;
-        array[1] = hours;
-        array[2] = minutes;
-        return array;
-    }
-    function pad(n) {
-        return (n < 10 ? '0' : '') + n;
-    }   
-    getCountdown(count++);
-    setInterval(function () { getCountdown(count++ ); }, 1000);
-  }
-
 
   render() {
     return (
@@ -122,7 +91,6 @@ export default class extends Component {
               <div className='box' key={index} >
                 <div className='timer' onClick={() => this.handleClick(index)}>
                 <h1>Upcoming Launch: {value.name}</h1> 
-                {/* <h2 className='timer'>{this.renderCountdown(currentDate,date)[1]}</h2>                 */}
                 </div>
                 {this.state.showInfo === index &&
                   <div className='info'>
