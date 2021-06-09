@@ -76,8 +76,13 @@ export default class extends Component {
             </h2>
           </div>
         </div>
+        <div className='countdown'>
+
+        </div>
         <div className='launch'>
           <h1>Upcoming Launches</h1>
+          <p1>These are the two upcoming spaceX launches.</p1>
+          <p1> Select one to view additional information</p1>
         </div>
         {this.state.launches && this.state.launches.map((value, index) => {
           if (index < 2) {
@@ -98,7 +103,7 @@ export default class extends Component {
                     <p className='paragraph'>{value.details}</p>
                     <h3>Flight No. : {value.flight_number}</h3>
                     <h3>Date: {date.toString()}</h3>
-                    <h3>Launchpad: {console.log(launchlink)}</h3>
+                    {/* <h3>Launchpad: {console.log(launchlink)}</h3> */}
                   </div>}
               </div>
             )
