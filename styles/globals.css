@@ -92,18 +92,6 @@ text-decoration: none;
 .title{
   text-decoration: none;
 }
-.countdown{
-  width:100%; 
-  padding: 10px;
-  font-family: 'Montserrat', sans-serif;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  background: #2D3142;
-  color: white;
-  font-size: 30px;
-  text-decoration: none;
-}
 
 <<<<<<< HEAD
 =======

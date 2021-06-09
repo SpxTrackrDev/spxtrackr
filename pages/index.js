@@ -79,15 +79,16 @@ export default class extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> parent of 4ac2e4e (reverted to countdown)
         <div className='countdown'>
 
         </div>
+=======
+>>>>>>> parent of 925a0b7 (Added new CSS)
         <div className='launch'>
           <h1>Upcoming Launches</h1>
-          <p1>These are the two upcoming spaceX launches.</p1>
-          <p1> Select one to view additional information</p1>
         </div>
 <<<<<<< HEAD
 =======
@@ -170,6 +171,7 @@ export default class extends Component {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                     {/* <h3>Launchpad: {console.log(launchlink)}</h3> */}
 =======
                     {/* <h2>Booster No. : {()=>this.getBooster(value.cores[0].core)}</h2> */}
@@ -182,6 +184,9 @@ export default class extends Component {
 =======
                     {/* <h3>Launchpad: {console.log(launchlink)}</h3> */}
 >>>>>>> parent of 4ac2e4e (reverted to countdown)
+=======
+                    <h3>Launchpad: {console.log(launchlink)}</h3>
+>>>>>>> parent of 925a0b7 (Added new CSS)
                   </div>}
               </div>
             )
