@@ -76,25 +76,26 @@ export default class extends Component {
             </h2>
           </div>
         </div>
+        
         {this.state.launches && this.state.launches.map((value, index) => {
-          if (index < 1) {
-            // const divStyle = { backgroundImage: 'url(https://wallpaperaccess.com/full/1145374.jpg)' }
-            let date = new Date(value.date_local)
-            var deadline = date;
-            var x = setInterval(function () {
-              let now = new Date().getTime();
-              var t = deadline - now;
-              var days = Math.floor(t / (1000 * 60 * 60 * 24));
-              var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-              var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-              var seconds = Math.floor((t % (1000 * 60)) / 1000);
-              document.getElementById("demo").innerHTML = days + "d "
-                + hours + "h " + minutes + "m " + seconds + "s ";
-              if (t < 1) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "LAUNCHED/LIVE";
-              }
-            }, 1000);
+          if (index < 2) {
+            // // const divStyle = { backgroundImage: 'url(https://wallpaperaccess.com/full/1145374.jpg)' }
+            // let date = new Date(value.date_local)
+            // var deadline = date;
+            // var x = setInterval(function () {
+            //   let now = new Date().getTime();
+            //   var t = deadline - now;
+            //   var days = Math.floor(t / (1000 * 60 * 60 * 24));
+            //   var hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            //   var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+            //   var seconds = Math.floor((t % (1000 * 60)) / 1000);
+            //   document.getElementById("demo").innerHTML = days + "d "
+            //     + hours + "h " + minutes + "m " + seconds + "s ";
+            //   if (t < 1) {
+            //     clearInterval(x);
+            //     document.getElementById("demo").innerHTML = "LAUNCHED/LIVE";
+            //   }
+            // }, 1000);
             return (
               <div className='box' key={index} >
                 <div className='timer' onClick={() => this.handleClick(index)}>
