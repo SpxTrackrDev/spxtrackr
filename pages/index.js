@@ -76,7 +76,11 @@ export default class extends Component {
             </h2>
           </div>
         </div>
-        
+        <div className='launch'>
+          <h1>Upcoming Launches</h1>
+          <p1>These are the two upcoming spaceX launches.</p1>
+          <p1> Select one to view additional information</p1>
+        </div>
         {this.state.launches && this.state.launches.map((value, index) => {
           if (index < 2) {
             // // const divStyle = { backgroundImage: 'url(https://wallpaperaccess.com/full/1145374.jpg)' }
@@ -121,8 +125,29 @@ export default class extends Component {
             return (<div key={index} ></div>)
           }
         })}
+        <div className='box'>
 
+        <div className='launch'>
+          <h1>Upcoming Starship Testflight</h1>
+          <p1>These are the upcoming SpaceX Starship test flights. The schedule is determined based on news from official SpaceX channels</p1>
+          </div>
+          <div className='timer' onClick={() => this.handleClick(3)}>
+                <h1>Starship BN3/SN20 Orbital Flight</h1>
+                  {/* <h2 id="demo"></h2> */}
+                </div>
+                {/* <div className='launch' onClick={() => this.handleClick(index)} >
+                  <h1>{value.name}</h1>
+                </div> */}
+                {this.state.showInfo === 3 &&
+                  <div className='info'>
+                    <h1> Launch Info</h1>
+                    <p className='paragraph'>The first orbital flight test of the Starship program using Booster BN3 and Starship SN20</p>
+                    <h3>Date: NET June 2020</h3>
+                  </div>}
+        </div>
+      
       </div>
+      
     );
   }
 }
